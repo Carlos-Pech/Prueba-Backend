@@ -7,7 +7,7 @@ API desarrollada en ASP.NET Core Web API para la gestión de usuarios y producto
 ## Tecnologías utilizadas
 
 - C#
-- .NET 6 / 7 / 8
+- .NET  8
 - ASP.NET Core Web API
 - Entity Framework Core
 - SQL Server
@@ -92,9 +92,8 @@ DELETE /api/products/{id}
 ###  Configuración de conexión
 
 ```json
-"ConnectionStrings": {
-  "DefaultConnection": "Server=.;Database=InventoryDB;Trusted_Connection=True;"
-}
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=PruebaTecnicaDB;Trusted_Connection=True;TrustServerCertificate=True;" 
 ```
 
 ## ⚙️ Ejecución del proyecto
