@@ -96,20 +96,43 @@ DELETE /api/products/{id}
     "DefaultConnection": "Server=localhost;Database=PruebaTecnicaDB;Trusted_Connection=True;TrustServerCertificate=True;" 
 ```
 
-## ⚙️ Ejecución del proyecto
+## Ejecución del proyecto
 
-Este proyecto fue ejecutado utilizando **Visual Studio**.
 
-###  Pasos para ejecutar:
-- Abrir la solución (.sln) en Visual Studio
-- Verificar la cadena de conexión en appsettings.json
+### Pasos para ejecutar
 
-- Abrir la Package Manager Console en Visual Studio:
-	- Tools → NuGet Package Manager → Package Manager Console
+## Opción 1: Visual Studio
+
+- Abrir la solución (.sln) en Visual Studio  
+- Verificar la cadena de conexión en `appsettings.json`
+
+- Abrir la Package Manager Console:
+  - Tools → NuGet Package Manager → Package Manager Console
 
 - Aplicar migraciones ejecutando el siguiente comando:
-	- Update-Database
-- Ejecutar el proyecto 
+- Update-Database
+
+## Opción 2: Visual Studio Code
+
+- Clonar el repositorio:
+  git clone https://github.com/Carlos-Pech/Prueba-Backend.git
+
+- cd backend
+
+- Abrir en VS Code:
+  code .
+
+- Restaurar dependencias:
+  dotnet restore
+
+- Instalar herramienta de Entity Framework (solo primera vez):
+  dotnet tool install --global dotnet-ef
+
+- Aplicar migraciones:
+  dotnet ef database update
+
+- Ejecutar el proyecto:
+  dotnet run
 
 ## Acceder a Swagger:
 https://localhost:{puerto}/swagger
