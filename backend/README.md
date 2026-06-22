@@ -38,7 +38,7 @@ El sistema implementa autenticación con JSON Web Token (JWT):
 
 ---
 
-## 📡 Endpoints de la API
+##  Endpoints de la API
 
 ### Auth
 
