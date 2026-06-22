@@ -10,6 +10,7 @@ using Microsoft.OpenApi.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
+// Orígenes permitidos para Angular (CORS)
 var corsOrigins = builder.Configuration["Cors:Origins"];
 
 builder.Services.AddCors(options =>
@@ -26,6 +27,9 @@ builder.Services.AddCors(options =>
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+// Contexto de base de datos (SQL Server)
+
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -35,6 +39,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IProductService, ProductService>();
+
+// Configuración de clave secreta para JWT
 
 var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!);
 

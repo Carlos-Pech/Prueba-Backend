@@ -7,6 +7,10 @@ using System.Security.Claims;
 using System.Text;
 namespace backend.Core.Services
 {
+    /**
+    * Servicio encargado de la generación de tokens JWT.
+    * Incluye claims del usuario y configuración de seguridad (issuer, audience, key).
+    */
     public class JwtTokenGenerator : IJwtTokenGenerator
     {
         private readonly IConfiguration _config;
@@ -17,6 +21,7 @@ namespace backend.Core.Services
 
         public string GenerateToken(User user)
         {
+            // Clave secreta utilizada para firmar el token
             var key = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(_config["Jwt:Key"]!)
             );
@@ -28,10 +33,15 @@ namespace backend.Core.Services
 
             var claims = new[]
             {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Role, user.Role)
-        };
+                // Identidad del usuario dentro del token
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+
+                // Email del usuario
+                new Claim(ClaimTypes.Email, user.Email),
+
+                // Rol para autorización (Admin, User, etc.)
+                new Claim(ClaimTypes.Role, user.Role)
+            };
 
             var token = new JwtSecurityToken(
                 issuer: _config["Jwt:Issuer"],
@@ -45,5 +55,5 @@ namespace backend.Core.Services
         }
     }
 
-    
+
 }
